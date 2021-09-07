@@ -99,14 +99,15 @@ function DashboardListProject({
               {project.members.map(
                 (member) =>
                   member && (
-                    <Avatar
-                      key={member.address}
-                      first_name={member.first_name}
-                      last_name={member.last_name}
-                      avatar_url={member.avatar_url}
-                      imported={member.is_imported}
-                      medium
-                    />
+                    <div key={member.address} className="dashboard-list-project-member-wrapper">
+                      <Avatar
+                        first_name={member.first_name}
+                        last_name={member.last_name}
+                        avatar_url={member.avatar_url}
+                        imported={member.is_imported}
+                        medium
+                      />
+                    </div>
                   )
               )}
             </div>
