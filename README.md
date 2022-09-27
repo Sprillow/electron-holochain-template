@@ -36,7 +36,7 @@ TODO: linux
 _Prerequisites_
 
 - Have rust language (stable) installed on your system
-- Have nodejs version 14 installed on your system
+- Have nodejs version 16 installed on your system
 
 Then run
 
@@ -57,12 +57,8 @@ You can run `npm run user-data-reset` if you have user data in development, but 
 
 - Have rust language (stable) installed on your system, then...
 - `npm run happ-install`: installs wasm32 compilation target for rust as well as the Holochain CLI
-- `npm run happ-pack`: compiles zomes into wasm and packages each one into a dna using Holochain CLI 
+- `npm run happ-pack`: compiles zomes into wasm and packages them into a .dna and a .happ using Holochain CLI 
 - `npm run happ-reset`: runs `happ-pack` and clears user data (Run this anytime you change the code in `happ` folder during development)
-
-To test backend:
-
-- `npm run happ-test`: runs unit tests
 
 **web** (user interface)
 
@@ -124,23 +120,23 @@ You can tweak DATABASES_VERSION_ID and KEYSTORE_VERSION_ID independently.
 
 DATABASES_VERSION_ID should be incremented when a new DNA is in use. It will cause users to have to re-create profiles and re-instate data they've previously added.
 
-KEYSTORE_VERSION_ID should be incremented if the version of lair-keystore changes, and has a new key format. Or if you otherwise want users to have to switch and generate new keys.
+KEYSTORE_VERSION_ID should be incremented if you want users to have to switch and generate new keys for any reason.
 
 
 ## Dependency Versions Information
 
 This project is currently using:
 
-https://github.com/holochain/holochain/releases/tag/holochain-0.0.126
+holochain-runner [v0.2.0](https://github.com/Sprillow/holochain-runner/releases/tag/v0.2.0)
 
-https://github.com/Sprillow/holochain-runner/releases/tag/v0.0.35
+which has an underlying `holochain` version of [0.0.162](https://github.com/holochain/holochain/releases/tag/holochain-0.0.162)
 
-Lair Keystore Revision [v0.0.9 Nov 4, 2021](https://github.com/holochain/lair/releases/tag/v0.0.9)
+expects an HAPP built with
+- HDK [v0.0.152](https://docs.rs/hdk/0.0.152/hdk/index.html)
+- HDI [v0.1.2](https://docs.rs/hdi/0.1.2/hdi/index.html)
 
-https://docs.rs/hdk/0.0.122/hdk/index.html
+and [electron 20](https://www.electronjs.org/docs/latest/api/app)
 
-and electron 16
 
-https://www.electronjs.org/docs/latest/api/app
 
 

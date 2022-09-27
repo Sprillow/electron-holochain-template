@@ -1,7 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron'
 import * as path from 'path'
 // import log from 'electron-log'
-import initAgent, { StateSignal, STATUS_EVENT } from 'electron-holochain'
+import initAgent, { StateSignal, STATUS_EVENT } from '@lightningrodlabs/electron-holochain'
 
 import {
   devOptions,
@@ -22,8 +22,10 @@ process.on('uncaughtException', (e) => {
 
 const BACKGROUND_COLOR = '#fbf9f7'
 
-const MAIN_FILE = path.join(__dirname, '../web/index.html')
-const SPLASH_FILE = path.join(__dirname, '../web/splashscreen.html')
+const MAIN_FILE = 'index.html'
+const SPLASH_FILE = 'splashscreen.html'
+const MAIN_FILE_PATH = path.join(__dirname, '../web', MAIN_FILE)
+const SPLASH_FILE_PATH = path.join(__dirname, '../web', SPLASH_FILE)
 // const LINUX_ICON_FILE = path.join(
 //   __dirname,
 //   '../web/logo/acorn-logo-desktop-512px.png'
@@ -53,7 +55,7 @@ const createMainWindow = (): BrowserWindow => {
   const mainWindow = new BrowserWindow(options)
   // and load the index.html of the app.
   if (app.isPackaged) {
-    mainWindow.loadFile(MAIN_FILE)
+    mainWindow.loadFile(MAIN_FILE_PATH)
   } else {
     // development
     mainWindow.loadURL(DEVELOPMENT_UI_URL)
@@ -90,10 +92,10 @@ const createSplashWindow = (): BrowserWindow => {
 
   // and load the splashscreen.html of the app.
   if (app.isPackaged) {
-    splashWindow.loadFile(SPLASH_FILE)
+    splashWindow.loadFile(SPLASH_FILE_PATH)
   } else {
     // development
-    splashWindow.loadURL(`${DEVELOPMENT_UI_URL}/splashscreen.html`)
+    splashWindow.loadURL(`${DEVELOPMENT_UI_URL}/${SPLASH_FILE}`)
   }
   // once its ready to show, show
   splashWindow.once('ready-to-show', () => {

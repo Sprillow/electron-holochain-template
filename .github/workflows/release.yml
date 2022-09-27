@@ -41,7 +41,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - ubuntu-18.04
+          - ubuntu-latest
           - macos-latest
           - windows-latest
     runs-on: ${{ matrix.os }}
@@ -76,18 +76,21 @@ jobs:
         run: |    
           npm run build
         shell: bash
+      # Ubuntu
       - name: upload binary (ubuntu only)
         if: ${{ runner.os == 'Linux' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "${GITHUB_REF#refs/tags/}" "electron/out/ElectronHolochainTemplate-0.0.1.AppImage" --clobber
+      # MacOS
       - name: upload binary (macos only)
         if: ${{ runner.os == 'macOs' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload "${GITHUB_REF#refs/tags/}" "electron/out/ElectronHolochainTemplate-0.0.1.dmg" --clobber
+      # Windows
       - name: upload binary (Windows only)
         if: ${{ runner.os == 'Windows' }}
         env:

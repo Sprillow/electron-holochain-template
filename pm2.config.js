@@ -10,7 +10,7 @@ module.exports = {
     },
     {
       name: 'electron-holochain',
-      script: './electron/node_modules/.bin/electron electron',
+      script: 'sleep 5 && ./electron/node_modules/.bin/electron electron',
       watch: ['electron/dist'],
       env: {
         NODE_ENV: 'development',

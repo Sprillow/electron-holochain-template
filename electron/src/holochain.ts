@@ -1,6 +1,6 @@
 import * as path from 'path'
 import { app } from 'electron'
-import { HolochainRunnerOptions, StateSignal, PathOptions } from 'electron-holochain'
+import { ElectronHolochainOptions, StateSignal, PathOptions } from '@lightningrodlabs/electron-holochain'
 
 const MAIN_APP_ID = 'main-app'
 const COMMUNITY_PROXY_URL =
@@ -56,15 +56,12 @@ const BINARY_PATHS: PathOptions | undefined = app.isPackaged
         __dirname,
         `../../app.asar.unpacked/binaries/holochain-runner${process.platform === 'win32' ? '.exe' : ''}`
       ),
-      lairKeystoreBinaryPath: path.join(
-        __dirname,
-        `../../app.asar.unpacked/binaries/lair-keystore${process.platform === 'win32' ? '.exe' : ''}`,
-      ),
     }
   : undefined
 
 // These options are in use when the application is under development
-const devOptions: HolochainRunnerOptions = {
+const devOptions: ElectronHolochainOptions = {
+  passphrase: "insecure-test-passphrase",
   happPath: happPath, // preload
   datastorePath: process.env.EH_TEST_USER_2
     ? '../user2-data/databases'
@@ -80,7 +77,8 @@ const devOptions: HolochainRunnerOptions = {
 
 // These options are in use when the application is packaged
 // for shipping
-const prodOptions: HolochainRunnerOptions = {
+const prodOptions: ElectronHolochainOptions = {
+  passphrase: "insecure-test-passphrase",
   happPath: happPath, // preload
   datastorePath: path.join(app.getPath('userData'), `databases-${DATABASES_VERSION_ID}`),
   appId: MAIN_APP_ID,
