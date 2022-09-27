@@ -1,4 +1,8 @@
-# Your Project Name Here
+# This Project Has Moved
+
+You can now find it here: https://github.com/lightningrodlabs/electron-holochain-template
+
+## Your Project Name Here
 
 This template gives you only what you need to get up and running with a new project that uses electron and holochain!
 
